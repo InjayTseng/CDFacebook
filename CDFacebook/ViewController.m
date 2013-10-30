@@ -150,6 +150,25 @@
                                               friendCache:self.friendCache];
 }
 
+- (IBAction)clickSendRequest:(id)sender {
+    // if there is a selected user, seed the dialog with that user
+    NSDictionary *parameters = self.fbidSelection ? @{@"to":self.fbidSelection} : nil;
+    [FBWebDialogs presentRequestsDialogModallyWithSession:nil
+                                                  message:@"Please come play RPS with me!"
+                                                    title:@"Invite a Friend"
+                                               parameters:parameters
+                                                  handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+                                                      if (result == FBWebDialogResultDialogCompleted) {
+                                                          NSLog(@"Web dialog complete: %@", resultURL);
+                                                      } else {
+                                                          NSLog(@"Web dialog not complete, error: %@", error.description);
+                                                      }
+                                                  }
+                                              friendCache:self.friendCache];
+}
+
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

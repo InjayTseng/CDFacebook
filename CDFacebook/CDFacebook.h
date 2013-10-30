@@ -22,6 +22,8 @@ typedef void(^FailureErrorBlock)(NSError* err);
 +(void)closeSession;
 +(void)requestMyInfoWithSuccess:(SuccessFBGrapgUserBlock)success withFaulure:(FailureErrorBlock)failure;
 
++(void)sendBasicRequest:(SuccessFBGrapgUserBlock)success withFaulure:(FailureErrorBlock)failure;
+
 @end
 
 @interface UserManager : NSObject
